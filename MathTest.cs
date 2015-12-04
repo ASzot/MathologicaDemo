@@ -75,6 +75,7 @@ namespace MathSolverWebsite
 
 			EvalData evalData = ConstructEvalData();
 
+			// Object deriving from ExComp representing a algebraic variable. 
 			AlgebraComp x = new AlgebraComp("x");
 
 			ExComp complexExpression = ConstructEx("3x^2 - 3", evalData);
@@ -87,7 +88,14 @@ namespace MathSolverWebsite
 			// String containing the evaluated result.
 			string result = squared.ToAlgTerm().FinalToDispStr();
 
-
+			ExComp left = ConstructEx(¨ln(x-2)¨, evalData);
+			ExComp right = ConstructEx(¨3¨, evalData);
+			
+			// The object containing the functionality used to solve algebraic equations. 
+			AlgebraSolver agSolver = new AlgebraSolver();
+			
+			// Any additional information regarding the result will be stored in the evalData object. 
+			ExComp solveResult = agSolver.SolveEq(left, right, new AlgebraVar(¨x¨), evalData);
 		}
 	}
 }
